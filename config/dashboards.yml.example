@@ -1,0 +1,23 @@
+---
+ph2:
+  description: Pack house number 2
+  boards:
+    - url: http://localhost:3030/rejections_ph2
+      secs: 35
+    - url: http://localhost:9292/image/IMGP2219.JPG
+      secs: 10
+    - url: http://localhost:3030/crates_shift_1_ph2
+      secs: 15
+ph3:
+  description: Pack house number 3
+  boards:
+    - url: http://localhost:3030/rejections_ph3
+      secs: 35
+    - url: http://localhost:3030/crates_shift_1_ph3
+      secs: 15
+    - url: http://localhost:9292/text/notes
+      secs: 30
+    - url: http://localhost:9292/image/icy.jpg
+      secs: 10
+    - url: http://localhost:9292/text/sample
+      secs: 30

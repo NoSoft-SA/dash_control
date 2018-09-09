@@ -1,0 +1,27 @@
+---
+notes:
+  - text: PACKHOUSES
+    size: 6
+    colour: navy
+  - text: All shifts get extra 5 minutes smoke break every 2nd break
+    size: 3
+    colour: blue
+sample:
+  - text: Size 1.5
+    size: 1.5
+    colour: green
+  - text: Size 2
+    size: 2
+    colour: yellow
+  - text: Size 3
+    size: 3
+    colour: orange
+  - text: Size 4
+    size: 4
+    colour: gray
+  - text: Size 5
+    size: 5
+    colour: red
+  - text: Size 6
+    size: 6
+    colour: blue

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_metatag %>
+
+    <title>DASHBOARDS</title>
+
+    <link rel="stylesheet" href="/css/tachyons.min.css">
+    <%#= assets(:css) %>
+  </head>
+  <body class="site" data-utf-8-ensurer="О">
+    <div id="container" class="container" style="padding:2em">
+      <%= yield %>
+    </div>
+  </body>
+</html>
