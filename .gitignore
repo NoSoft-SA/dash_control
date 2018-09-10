@@ -1,2 +1,3 @@
 config/dashboards.yml
 config/text_contents.yml
+public/images/*
