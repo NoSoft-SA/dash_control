@@ -85,33 +85,37 @@ class DashControl < Roda
 
     r.on 'list' do # rubocop:disable Metrics/BlockLength
       config = load_config('dashboards.yml')
-      k1 = config.keys.first || 'keyname'
-      out = [<<~HTML]
-        <h1 class="ma0">Configured Dashboards</h1>
-        <p>
-          Load a board with a URL like: <a href="#{request.base_url}/dashboard/#{k1}">#{request.base_url}/dashboard/#{k1}</a>
-          - where <em>#{k1}</em> is a key from the list below.
-        </p>
-        <table style="border-collapse:collapse">
-        <thead><tr><th>Key</th><th>Description</th><th>URL</th>
-        <th>Duration (Secs)</th></tr></thead><tbody>
-      HTML
-      css = 'class="bb pa2"'
-      config.keys.each do |key|
-        pre = <<~HTML
-          <tr class="dim"><td #{css.sub('"', '"navy b ')}>#{key}</td>
-          <td #{css}>#{config[key]['description']}</td>
+      if config.nil?
+        '<h1>No dashboards defined as yet</h1>'
+      else
+        k1 = config.keys.first || 'keyname'
+        out = [<<~HTML]
+          <h1 class="ma0">Configured Dashboards</h1>
+          <p>
+            Load a board with a URL like: <a href="#{request.base_url}/dashboard/#{k1}">#{request.base_url}/dashboard/#{k1}</a>
+            - where <em>#{k1}</em> is a key from the list below.
+          </p>
+          <table style="border-collapse:collapse">
+          <thead><tr><th>Key</th><th>Description</th><th>URL</th>
+          <th>Duration (Secs)</th></tr></thead><tbody>
         HTML
-        config[key]['boards'].each do |board|
-          out << <<~HTML
-            #{pre}<td #{css}>#{board['url']}</td>
-            <td #{css} align="right">#{board['secs']}</td></tr>
+        css = 'class="bb pa2"'
+        config.keys.each do |key|
+          pre = <<~HTML
+            <tr class="dim"><td #{css.sub('"', '"navy b ')}>#{key}</td>
+            <td #{css}>#{config[key]['description']}</td>
           HTML
-          pre = "<tr class='dim'><td colspan='2'>&nbsp;</td>"
+          config[key]['boards'].each do |board|
+            out << <<~HTML
+              #{pre}<td #{css}>#{board['url']}</td>
+              <td #{css} align="right">#{board['secs']}</td></tr>
+            HTML
+            pre = "<tr class='dim'><td colspan='2'>&nbsp;</td>"
+          end
         end
+        out << '</tbody></table>'
+        view(inline: out.join("\n"))
       end
-      out << '</tbody></table>'
-      view(inline: out.join("\n"))
     end
   end
 
